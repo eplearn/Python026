@@ -40,7 +40,7 @@ def censor_link(string):
                 pattern = sub_pattern
             else:
                 pattern = pattern + '|' + sub_pattern
-            answer = re.sub(f'{pattern}', ' ***** ', string)
+    answer = re.sub(f'{pattern}', ' ***** ', string)
     # Исключим из возвращаемой строки лишние пробелы.
     return re.sub(r'\s+', ' ', answer)
 
