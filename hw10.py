@@ -65,9 +65,7 @@ class FractionNum:
 
         else:
             tmp_frac = first + second
-            print(f'tmp_frac = {tmp_frac}')
             result_fraction = str(tmp_frac)[1::]
-            print(f'result_fraction = {result_fraction}')
             if int(str(tmp_frac)[0]) > 2:
                 if self.whole < 0 and other.whole < 0:
                     result_whole -= 1
