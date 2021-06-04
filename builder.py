@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from Pasta import Pasta
+from pasta import Pasta
 
 
 class Builder(ABC):

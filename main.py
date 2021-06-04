@@ -1,5 +1,5 @@
-from Builder import PastaBigoliBuilder, PastaTrofieBuilder, PastaOrecchietteBuilder
-from Director import Director
+from builder import PastaBigoliBuilder, PastaTrofieBuilder, PastaOrecchietteBuilder
+from director import Director
 
 
 def main():
