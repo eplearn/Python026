@@ -30,7 +30,8 @@ class DataStorage:
             self.recipes[recipe.get_recipe_name()] = recipe
 
     def add_recipe(self, recipe):
-        self.recipes[recipe.get_recipe_name] = recipe
+        key = recipe.get_recipe_name()
+        self.recipes.update({key: recipe})
 
     def delete_recipe(self, recipe_name):
         recipe = self.recipes.get(recipe_name)
