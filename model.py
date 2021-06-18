@@ -2,10 +2,11 @@ import random as rand
 
 
 class DataStorage:
-    def __init__(self, name):
+    def __init__(self, name='storage'):
         self.name = name
         self.recipes = {}
         self.clients = {}
+        self.init_recipes()
 
     def __str__(self):
         return f"Data storage's name is {self.name}, recipes are: {str(self.recipes)}, clients are: {self.clients}"
@@ -13,11 +14,13 @@ class DataStorage:
     def init_recipes(self):
         for i in range(0, 10):
             Recipe.add_ingredient(str(i))
+
         default_recipe_name = 'recipe_name'
         default_author_name = 'author_name'
         default_description = 'description'
         default_course_name = 'course_name'
         default_cuisine_name = 'cuisine_name'
+
         for i in range(1, 11):
             ingredient_set = set()
             for j in range(5):
@@ -39,7 +42,7 @@ class DataStorage:
     def get_recipe(self, recipe_name):
         recipe = self.recipes.get(recipe_name)
         if recipe is not None:
-            return str(recipe)
+            return '\n' + str(recipe)
         else:
             return f"There is no recipe '{recipe_name}' in current data storage."
 
@@ -47,7 +50,7 @@ class DataStorage:
         answer = '-'.center(100, '-') + '\n' 'All recipes: \n\n'
         values = self.recipes.values()
         for recipe in values:
-            temp = str(recipe)
+            temp = '\n' + str(recipe)
             answer = answer + temp + '\n\n'
         answer = answer + '-'.center(100, '-')
         return answer
