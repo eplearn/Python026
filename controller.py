@@ -8,7 +8,7 @@ class Controller:
         self.user_interface = UserInterface()
         self.user_responses = []
 
-    def add_recipe(self, recipe):
+    def add_recipe(self):
         recipe_list = self.user_interface.enter_recipe()
         recipe = Recipe(recipe_list[0], recipe_list[1], recipe_list[2], recipe_list[3], recipe_list[4],
                         recipe_list[5])
@@ -27,8 +27,7 @@ class Controller:
 
     def handle_user_response(self, response):
         if response == '1':
-            recipe_name = self.user_interface.enter_recipe_name()
-            self.add_recipe(recipe_name)
+            self.add_recipe()
         elif response == '2':
             recipe_name = self.user_interface.enter_recipe_name()
             self.get_recipe(recipe_name)
