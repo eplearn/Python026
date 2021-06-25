@@ -14,6 +14,3 @@ class Client:
         """Возвращает текущее количество денег"""
         return self.money
 
-    def get_orders(self):
-        """Возвращает имя"""
-        return self.orders
