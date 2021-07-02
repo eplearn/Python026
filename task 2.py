@@ -6,6 +6,8 @@ from pathlib import Path
 import threading
 
 
+# Prime numbers and factorials go to project directory.
+
 def main():
     path = input_path()
 
