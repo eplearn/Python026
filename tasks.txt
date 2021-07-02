@@ -25,7 +25,7 @@
     # task1_futures => 8.789475917816162 сек
 
 
-    # task2
+    # task2 # Q:\file2.txt
 
     # random_fill(path)
     # # print(find_numbers(path))

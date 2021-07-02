@@ -1,4 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor as PoolExecutor
 import random as rand
 import math
 import re
@@ -14,7 +13,7 @@ def main():
 
     filling_thread = threading.Thread(target=random_fill, args=(path, lock))
     primes_thread = threading.Thread(target=calc_primes, args=(path,))
-    factorials_thread = threading.Thread(target=random_fill, args=(path,))
+    factorials_thread = threading.Thread(target=calc_factorials, args=(path,))
 
     filling_thread.start()
     primes_thread.start()
@@ -31,10 +30,9 @@ def input_path():
     return path
 
 
-# Q:\file2.txt
 def random_fill(path, lock):
     with lock:
-        data_length = 10
+        data_length = 100
         data = []
         for i in range(data_length):
             data.append(rand.randint(1, 1000))
@@ -47,7 +45,6 @@ def find_numbers(path):
     numbers = []
     with path.open(mode='r') as file:
         for line in file:
-            print(line.strip('\n'))
             nums = re.findall(r'\d+', line.strip('\n'))
             numbers.extend(nums)
     return list(map(int, numbers))
@@ -73,17 +70,20 @@ def check_prime(number):
 
 
 def calc_primes(path):
+    print(f'numbers {find_numbers(path)}')
     primes = find_primes(find_numbers(path))
-
+    print(f'primes {primes}')
     with open('primes.txt', 'w') as f:
         f.write(str(primes))
 
 
 def calc_factorials(path):
+    print(f'numbers {find_numbers(path)}')
     numbers = find_numbers(path)
     factorials = []
     for number in numbers:
         factorials.append(math.factorial(number))
+    print(f'factorials {factorials}')
     with open('factorials.txt', 'w') as f:
         f.write(str(factorials))
 
