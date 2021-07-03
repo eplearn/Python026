@@ -18,10 +18,10 @@ def main():
     factorials_thread = threading.Thread(target=calc_factorials, args=(path, lock))
 
     filling_thread.start()
+    filling_thread.join()
+
     primes_thread.start()
     factorials_thread.start()
-
-    filling_thread.join()
     primes_thread.join()
     factorials_thread.join()
 

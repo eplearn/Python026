@@ -33,6 +33,7 @@ def main():
     start_time = time.time()
     lock = threading.Lock()
 
+    # следует сделать так, чтобы передавалось возвращаемое значение одного потока в качестве аргумента функции другого
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.submit(random_fill, data, data_length, lock=lock)
         executor.submit(calc_sum, data, answer)
