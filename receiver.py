@@ -32,4 +32,4 @@ class Receiver:
 
     def run(self):
         loop = asyncio.get_event_loop()  # создаётся объект цикла событий
-        loop.run_until_complete(self.execute())  # цикл событий исполняется, пока main() не закончит свою работу
+        loop.run_until_complete(self.execute())  # цикл событий исполняется, пока execute() не закончит свою работу
