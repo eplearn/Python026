@@ -5,7 +5,8 @@ class Generator:
     TOKENS = {'show_db': 'SHOW DATABASES', 'create_db': 'CREATE DATABASE', 'drop_db': 'DROP DATABASE',
               'use_db': 'USE', 'show_tables': 'SHOW TABLES', 'create_table': 'CREATE TABLE',
               '(': '(', ')': ')', 'int': 'INT', 'char': 'VARCHAR', 'null': 'NULL', 'auto_incr': 'AUTO_INCREMENT',
-              'prime': 'PRIMARY KEY', 'not': 'NOT', ',': ',', ';': ';', 'inserto': 'INSERT INTO', 'values': 'VALUES', 'showculs': 'SHOW COLUMNS'}
+              'prime': 'PRIMARY KEY', 'not': 'NOT', ',': ',', ';': ';', 'inserto': 'INSERT INTO', 'values': 'VALUES',
+              'select_all': 'SELECT * FROM'}
     NAMES = {'clients': 'clients', 'id': 'id'}
     VALUES = {'char': '255'}
     TASKS = {'37': 'task37'}
@@ -61,10 +62,9 @@ class Generator:
                 result = result + ins
             return result
 
-        show_cols = f''
-
+        show_all_cols = f'{Generator.TOKENS.get("select_all")} {data_name}'
 
         if task == Generator.TASKS.get('37'):
-            instruction = f'{create_and_use}{create_table}{insert_all()}'
+            instruction = f'{create_and_use}{create_table}{insert_all()}{show_all_cols}'
 
         return instruction
