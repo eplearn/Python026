@@ -18,7 +18,7 @@ class Receiver:
             self.save_data(data, index)  # номер телефона передаётся на запись
 
     def save_data(self, input_data, index):
-        output_data = f'task {index}.  {input_data}\n'  # формируется строка, которая буде записана в файл
+        output_data = f'task {index}.  {input_data}\n'  # формируется строка, которая будет записана в файл
         with open(f'{self.filename}', 'a') as f:
             f.write(output_data)
 
