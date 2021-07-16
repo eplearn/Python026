@@ -6,12 +6,10 @@ class Generator:
               'use_db': 'USE', 'show_tables': 'SHOW TABLES', 'create_table': 'CREATE TABLE',
               '(': '(', ')': ')', 'int': 'INT', 'char': 'VARCHAR', 'null': 'NULL', 'auto_incr': 'AUTO_INCREMENT',
               'prime': 'PRIMARY KEY', 'not': 'NOT', ',': ',', ';': ';', 'inserto': 'INSERT INTO', 'values': 'VALUES',
-              'select_all': 'SELECT * FROM'}
+              'select_all': 'SELECT * FROM', 'order': 'ORDER BY', 'where': 'WHERE', 'like': 'LIKE'}
     NAMES = {'clients': 'clients', 'id': 'id'}
     VALUES = {'char': '255'}
     TASKS = {'37': 'task37'}
-    dic = {}
-    buffer = ''
 
     @staticmethod
     def generate_instruction(task, json_file):
@@ -21,10 +19,6 @@ class Generator:
             Generator.buffer = jf.read()
         cols = json.loads(Generator.buffer).get('cols')
         data = json.loads(Generator.buffer).get('data')
-        print(data[0])
-
-        # with open("file.txt", 'w') as f:
-        #     f.write(d)
 
         values = ''
         table_rows = f"{Generator.NAMES.get('id')} {Generator.TOKENS.get('int')} {Generator.TOKENS.get('auto_incr')} {Generator.TOKENS.get('prime')}, "
@@ -62,9 +56,12 @@ class Generator:
                 result = result + ins
             return result
 
-        show_all_cols = f'{Generator.TOKENS.get("select_all")} {data_name}'
+        show_all_cols = f'{Generator.TOKENS.get("select_all")} {data_name}{Generator.TOKENS.get(";")}\n'
+        ordered_by_name = f'{Generator.TOKENS.get("select_all")} {data_name} {Generator.TOKENS.get("order")} {cols[0]}{Generator.TOKENS.get(";")}\n'
+        where_date = f'{Generator.TOKENS.get("select_all")} {data_name} {Generator.TOKENS.get("where")} {cols[0]} {Generator.TOKENS.get("like")}' \
+                     f' "j%" {Generator.TOKENS.get("order")} {cols[0]}{Generator.TOKENS.get(";")}\n'
 
         if task == Generator.TASKS.get('37'):
-            instruction = f'{create_and_use}{create_table}{insert_all()}{show_all_cols}'
+            instruction = f'{create_and_use}{create_table}{insert_all()}{show_all_cols}{ordered_by_name}{where_date}'
 
         return instruction
