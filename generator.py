@@ -16,9 +16,9 @@ class Generator:
         instruction = ''
 
         with open(json_file, 'r') as jf:
-            Generator.buffer = jf.read()
-        cols = json.loads(Generator.buffer).get('cols')
-        data = json.loads(Generator.buffer).get('data')
+            buffer = jf.read()
+        cols = json.loads(buffer).get('cols')
+        data = json.loads(buffer).get('data')
 
         values = ''
         table_rows = f"{Generator.NAMES.get('id')} {Generator.TOKENS.get('int')} {Generator.TOKENS.get('auto_incr')} {Generator.TOKENS.get('prime')}, "
