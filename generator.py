@@ -58,10 +58,10 @@ class Generator:
 
         show_all_cols = f'{Generator.TOKENS.get("select_all")} {data_name}{Generator.TOKENS.get(";")}\n'
         ordered_by_name = f'{Generator.TOKENS.get("select_all")} {data_name} {Generator.TOKENS.get("order")} {cols[0]}{Generator.TOKENS.get(";")}\n'
-        where_date = f'{Generator.TOKENS.get("select_all")} {data_name} {Generator.TOKENS.get("where")} {cols[0]} {Generator.TOKENS.get("like")}' \
+        where_name = f'{Generator.TOKENS.get("select_all")} {data_name} {Generator.TOKENS.get("where")} {cols[0]} {Generator.TOKENS.get("like")}' \
                      f' "j%" {Generator.TOKENS.get("order")} {cols[0]}{Generator.TOKENS.get(";")}\n'
 
         if task == Generator.TASKS.get('37'):
-            instruction = f'{create_and_use}{create_table}{insert_all()}{show_all_cols}{ordered_by_name}{where_date}'
+            instruction = f'{create_and_use}{create_table}{insert_all()}{show_all_cols}{ordered_by_name}{where_name}'
 
         return instruction
