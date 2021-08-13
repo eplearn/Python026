@@ -3,7 +3,7 @@ import random as rand
 from psycopg2 import connect, extensions
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from sqlalchemy import create_engine, Column, Integer, String, text
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
