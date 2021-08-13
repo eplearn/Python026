@@ -9,8 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class Goodies(Base):
-    __tablename__ = 'goodies'
+class Product(Base):
+    __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(45), nullable=False)
@@ -62,7 +62,7 @@ def main():
 
     # Creating new connection and metadata object.
     engine = create_engine(f'mysql+mysqlconnector://{args[0]}:{args[1]}@{args[2]}/game_db', echo=True)
-    # connection = engine.connect()
+    connection = engine.connect()
 
     Base.metadata.create_all(engine)
 
