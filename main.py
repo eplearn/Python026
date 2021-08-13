@@ -1,8 +1,11 @@
 import random as rand
 
-import mysql.connector
+from psycopg2 import connect, extensions
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
 from sqlalchemy import create_engine, Column, Integer, String, text
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
 
 
 # Base refers to object contains hidden Metadata object and mapper (class -> table).
@@ -37,35 +40,116 @@ def input_connection_values():
 
 
 def create_db(lgn, pwd, addr):
-    db_connection = mysql.connector.connect(
-        host=addr,
+    # declare a new PostgreSQL connection object
+    # A pre-existing database is required in order to create a connection to PostgreSQL (it is 'first' here).
+    conn = connect(
+        dbname='postgres',
         user=lgn,
-        password=pwd
+        password=pwd,
+        host=addr,
+        port="5432"
     )
 
-    db_cursor = db_connection.cursor()
-    db_cursor.execute('CREATE DATABASE store_data')
-    db_cursor.execute('SHOW DATABASES')
+    # object type: psycopg2.extensions.connection
+    print("\ntype(conn):", type(conn))
 
-    for row in db_cursor:
-        print(row)
+    # string for the new database name to be created
+    DB_NAME = "store_data"
 
-    db_cursor.close()
-    db_connection.close()
+    """The psycopg2 adapter will raise an ActiveSqlTransaction exception 
+    if you don’t set the connection object’s set_isolation_level attribute.
+    This is because the CREATE DATABASE statement won’t work unless AUTOCOMMIT is set to ON."""
+
+    # get the isolation leve for autocommit
+    autocommit = extensions.ISOLATION_LEVEL_AUTOCOMMIT
+    print("ISOLATION_LEVEL_AUTOCOMMIT:", extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    # set the isolation level for the connection's cursors
+    # will raise ActiveSqlTransaction exception otherwise
+    conn.set_isolation_level(autocommit)
+
+    # instantiate a cursor object from the connection
+    cursor = conn.cursor()
+
+    # use the execute() method to make a SQL request
+    cursor.execute('CREATE DATABASE ' + str(DB_NAME))
+
+    # close the cursor to avoid memory leaks
+    cursor.close()
+
+    # close the connection to avoid memory leaks
+    conn.close()
+
+    print('\n')
+
+
+def def_location():
+    first = rand.randint(1, 4)
+    second = rand.randint(1, 4)
+    third = rand.randint(1, 4)
+    location = {first, second, third}
+    return str(location)
+
+
+def insert_data(session):
+    queries = []
+    for i in range(25):
+        vals = []
+        for k in range(4):
+            vals.append(rand.randint(0, 100))
+
+        item = Product(
+            name=f'name_{i}{chr(vals[0])}',
+            location=def_location(),
+            quantity=vals[1],
+            price=100 * vals[2],
+            mass=1000 - vals[3] * rand.randint(0, 5)
+        )
+        queries.append(item)
+
+    for item in queries:
+        session.add(item)
+        session.commit()
+
+
+def select_all(session):
+    print('SELECT ALL\n')
+    for row in session.query(Product).all():
+        print(f'name = {row.name}, location = {row.location}, quantity = {row.quantity}, price = {row.price}, mass = {row.mass}')
+    print('\n')
+
+
+def select_low_mass_items(session):
+    print('SELECT LOW MASS AND HIGH PRICE\n')
+    for row in session.query(Product).filter(Product.mass < 700, Product.price > 5000).all():
+        print(f'name = {row.name}, location = {row.location}, quantity = {row.quantity}, price = {row.price}, mass = {row.mass}')
+    print('\n')
 
 
 def main():
     # Receiving parameters for the connection.
     args = [*input_connection_values()]
 
+    # Creating database 'store_data'.
     create_db(lgn=args[0], pwd=args[1], addr=args[2])
 
-    # Creating new connection and metadata object.
-    engine = create_engine(f'mysql+mysqlconnector://{args[0]}:{args[1]}@{args[2]}/game_db', echo=True)
-    connection = engine.connect()
+    # Creating new connection.
+    engine = create_engine(f'postgresql+psycopg2://{args[0]}:{args[1]}@{args[2]}/store_data', echo=True)
+    # connection = engine.connect()
 
+    # Creating table 'product'.
     Base.metadata.create_all(engine)
 
+    # Creating new session.
+    session = Session(bind=engine)
 
-if __name__ == "__main__":
+    # Adding items to table 'product'.
+    insert_data(session)
+
+    # Selecting items in table 'product'.
+    select_all(session)
+    select_low_mass_items(session)
+
+
+if __name__ == '__main__':
     main()
