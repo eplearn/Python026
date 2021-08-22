@@ -39,9 +39,9 @@ def userAdd():
         #         and request.args.get("phone") is not None:
 
         context = {
-            "name": str(request.values.get("name")) + " Ivanov",
-            "email": str(request.values.get("email")),
-            "phone": str(request.values.get("phone"))
+            "name": str(request.form.get("name")) + " Ivanov",
+            "email": str(request.form.get("email")),
+            "phone": str(request.form.get("phone"))
         }
 
         cursor.execute(f"insert into customer (name, email, phone) "
