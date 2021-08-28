@@ -11,11 +11,11 @@ def get_date_and_time():
 
 
 def get_prog_day():
-    current_datetime = datetime.now().year
-    if current_datetime % 400 == 0:
-        return f'12.09{current_datetime}'
+    current_year = datetime.now().year
+    if current_year % 400 == 0:
+        return f'12-09-{current_year}'
     else:
-        return f'13-09-{current_datetime}'
+        return f'13-09-{current_year}'
 
 
 def get_mul_table(n):
@@ -34,4 +34,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
