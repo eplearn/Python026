@@ -1,4 +1,5 @@
 import sqlite3
+# from crypt import methods
 
 from Tools.scripts.make_ctype import method
 from flask import Flask, render_template, request
@@ -52,6 +53,29 @@ def userAdd():
         return render_template("users.html", **context)
 
     return render_template("users.html")
+
+
+@app.route('/product', methods=['GET', 'POST'])
+def add_product():
+    connection = sqlite3.connect("shop.sqlite", isolation_level=None)
+    cursor = connection.cursor()
+    if request.method == 'POST':
+        data = {
+            "name": str(request.form.get("name")),
+            "description": str(request.form.get("description")),
+            "price": str(request.form.get("price"))
+        }
+        create_record(cursor, data)
+        return render_template("add_product.html", **data)
+    return render_template('add_product.html')
+
+
+def create_record(cursor, data):
+    cursor.execute(
+        f"insert into product (name, description, price) "
+        f"values (\"{data['name']}\", \"{data['description']}\","
+        f" \"{data['price']}\")"
+    )
 
 
 if __name__ == '__main__':

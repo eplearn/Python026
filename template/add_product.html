@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>ADD PRODUCT</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <form name='contact-form' method="POST">
+            <input id = "name" type="text" name = "name" placeholder="name" required>
+            <input type="text" name="description" placeholder="description" required>
+            <input type="text" name="price" placeholder="price" required>
+            <input type="submit" value="Submit" id="btnsubmit" onclick="submitForm()">
+        </form>
+        <p>
+            Добавили продукт {{ name }} описание {{ description }} , цена {{ price }}
+        </p>
+
+        <script>
+/*            function test(){
+                $.ajax({
+                url: '/ajax_product', /* Куда пойдет запрос */
+                method: 'get', /* Метод передачи (post или get) */
+                dataType: 'html', /* Тип данных в ответе (xml, json, script, html). */
+
+                data: {name: document.getElementById("name"),
+                {description: document.getElementById("description"),
+                {price: document.getElementById("price")
+                }, /* Параметры передаваемые в запросе. */
+
+                success: function(data){ /* функция которая будет выполнена после успешного запроса. */
+                    let a = JSON.parse(data);
+                    console.log(a["text"]);
+                }
+                });
+            }
+
+            function submitForm() {
+               // Get the first form with the name
+               // Usually the form name is not repeated
+               // but duplicate names are possible in HTML
+               // Therefore to work around the issue, enforce the correct index
+               var frm = document.getElementsByName('contact-form')[0];
+               frm.submit(); // Submit the form
+               frm.reset();  // Reset all form data
+               return false; // Prevent page refresh
+            }
+            */
+
+            function submitForm(){
+                document.querySelector('contact-form').onsubmit = e => {
+                e.target.submit();
+                e.target.reset();
+                return false;
+                alert('Wow')
+            };
+            }
+        </script>
+    </body>
+</html>
