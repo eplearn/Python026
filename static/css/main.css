@@ -31,6 +31,10 @@ th, td {
     border: 1px solid darkgrey;
 }
 
+th:hover, td:hover {
+    background-color: #b4f7fb;
+}
+
 div.table {
     margin-top: 0;
     margin-left: 48px;
