@@ -26,11 +26,12 @@ def index():
 
     if request.method == 'POST':
         try:
-            db.session.add(task)
+            id = int(request.form['id'])
+            Task.query.filter_by(id=id).delete()
             db.session.commit()
-            return redirect('/create_task')
         except:
             return 'Что-то сломалось'
+        return render_template('main.html', data=tasks)
     else:
         return render_template('main.html', data=tasks)
 
