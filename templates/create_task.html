@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Create new task</title>
+{% endblock %}
+
+{% block body %}
+<form method="POST">
+    <div class="form-floating mb-3">
+        <input name="name" type="text" class="form-control" id="floatingInput" placeholder="Name" autocomplete="off">
+        <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input name="description" type="text" class="form-control" id="floatingPassword"
+               placeholder="Description">
+        <label for="floatingPassword">Description</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Create new task</button>
+</form>
+{% if error %}
+<h1>{{ error }}</h1>
+{% endif %}
+{% endblock %}
