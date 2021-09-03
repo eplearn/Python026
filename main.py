@@ -31,7 +31,7 @@ def index():
             db.session.commit()
         except:
             return 'Что-то сломалось'
-        return render_template('main.html', data=tasks)
+        return redirect(request.url)
     else:
         return render_template('main.html', data=tasks)
 
