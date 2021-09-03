@@ -5,24 +5,32 @@
 {% endblock %}
 
 {% block body %}
-
+<img style="float:right" src="{{ url_for('static', filename='img/justdoit.png') }}" height="100">
 <section class="py-2 text-center container">
-    <div class="row py-lg-5">
+
+    <div class="row py-lg-6">
         <div class="col-lg-6 col-md-8 mx-auto">
+
             <h1 class="fw-light">Tasks</h1>
         </div>
     </div>
 </section>
 
-{% if data is not none %}
+{% if data == [] %}
+    <div>
+        <h3 style="text-align:center" class="fw-light">
+            There is no any task here.
+        </h3>
+    </div>
+{% else %}
 {% for task in data %}
-<div class="album py-5 bg-light">
+<div class="album py-5">
     <div class="container">
 
         <div class="row row-cols-1">
             <div class="col">
                 <div class="card shadow-sm">
-                 <img src="{{ url_for('static', filename='img/do.jpg') }}" width="100">
+
 
                     <div class="card-body">
                         <p class="card-text"><b>{{ task.name }}</b></p>
@@ -34,7 +42,7 @@
                                     <button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
                                 </form>
                             </div>
-                            <small class="text-muted">{{ task.time}}</small>
+                            <small class="text-muted">created at: {{ task.time}}</small>
                         </div>
                     </div>
 
@@ -45,12 +53,5 @@
     </div>
 </div>
 {% endfor %}
-{% else %}
-    <div>
-        <h1>
-            There is no any task here.
-        </h1>
-    </div>
 {% endif %}
-
 {% endblock %}

@@ -6,16 +6,25 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-reboot.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css') }}">
     </head>
     <body>
-            <header>
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 text-dark text-decoration-none" href="/">Tasks</a>
-                <a class="me-3 py-2 text-dark text-decoration-none" href="/create_task">Create new task</a>
-            </nav>
+        <div class="ripple-background">
+        <div class="circle xxlarge shade1"></div>
+        <div class="circle xlarge shade2"></div>
+        <div class="circle large shade3"></div>
+        <div class="circle mediun shade4"></div>
+        <div class="circle small shade5"></div>
         </div>
-    </header>
+        <header>
+            <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="/"><span class="fw-bolder">Tasks</span></a>
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="/create_task"><span class="fw-bolder">Create new</span></a>
+                </nav>
+            </div>
+        </header>
+
 
         {% block body %}{% endblock %}
 
