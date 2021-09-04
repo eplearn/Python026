@@ -1,7 +1,7 @@
 let buttonArray = document.getElementsByClassName("button-card");
 
 let triggerFunc = function(){
-    let productId = this.getAttribute("value")
+    let productId = this.getAttribute("value");
     let productName = document.getElementById("header-" + productId);
     productName = productName.innerHTML;
 
