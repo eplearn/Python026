@@ -14,7 +14,6 @@
                     <div class="d-flex justify-content-between">
                         <div></div>
                         <h4 class="my-0 fw-normal" id="header-{{ product.id }}">{{ product.name }}</h4>
-<!--                        <a href="/delete/{{ product.id }}"><button type="button" class="btn-close" id="closeButton" aria-label="Close"></button></a>-->
                         <button type="button" class="btn-close button-card" id="closeButton" value="{{ product.id }}" aria-label="Close" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
                     </div>
                 </div>
@@ -26,7 +25,7 @@
                         <li>{{ product.description }}</li>
                     </ul>
                     <a href="/buy/{{ product.id }}">
-                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Купить!</button>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-primary" value="{{ product.id }}">Купить!</button>
                     </a>
                 </div>
             </div>
