@@ -1,0 +1,28 @@
+{% extends 'website/base.html' %}
+
+{% block title %}
+    <title>Create account</title>
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <form method="POST">
+            {% csrf_token %}
+
+                <h1>Create account</h1>
+
+                {% for el in form %}
+                <div class="form-floating mb-3">
+                    <label for="floatingInput">{{ el.label }}:</label>
+                    {{ el }}
+                </div>
+
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Create new account</button>
+            </form>
+            <h3>{{ error }}</h3>
+        </div>>
+    </main>
+{% endblock %}
