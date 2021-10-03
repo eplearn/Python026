@@ -1,0 +1,90 @@
+{% extends 'website/base.html' %}
+
+{% block title %}
+    <title>Create note</title>
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <div class="form">
+                <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                    <h1>Create note</h1>
+
+                    {% for el in form %}
+                    <div class="form-floating mb-3">
+                        <label for="floatingInput">{{ el.label }}:</label>
+                        {{ el }}
+                    </div>
+
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-success">Create new note</button>
+                </form>
+                <h3>{{ error }}</h3>
+            </div>
+
+            <div class="caption">
+                <h4>Notes</h4>
+            </div>
+            {% for note in notes %}
+
+                <div class="tables">
+
+                    <table class="table table-borderless" style="width:100%">
+                        <thead class="table-dark">
+                            <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">author</th>
+                            <th scope="col">title</th>
+                            <th scope="col">category</th>
+                            <th scope="col">publish date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bordered">
+                                <td><span style="color:green"><b>{{ note.id }}</b></span></td>
+                                <td><b>{{ note.author }}</b></td>
+                                <td><b>{{ note.title }}</b></td>
+                                <td><b>{{ note.category }}</b></td>
+                                <td><b>{{ note.publish_date }}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <colgroup>
+                           <col style="width: 15%;">
+                           <col style="width: 85%;">
+                        </colgroup>
+                        <thead></thead>
+                        <tbody>
+                            <tr class="align-top">
+                                <td>
+                                    <b>Abstract: </b>
+                                </td>
+                                <td>
+                                    {{ note.abstract }}
+                                </td>
+                            </tr>
+
+                            <tr class="align-top">
+                                <td>
+                                    <b>Text: </b>
+                                </td>
+                                <td>
+                                    {{ note.text }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            {% endfor %}
+
+        </div>>
+    </main>
+{% endblock %}

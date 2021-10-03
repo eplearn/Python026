@@ -1,0 +1,28 @@
+body {
+    background-color: #F5F5F5;
+}
+
+td {
+    padding: 15px;
+}
+
+.caption {
+    padding: 30px;
+    border: 1px solid #A9A9A9;
+    text-align: center;
+    background-color: #DCDCDC;
+}
+
+.form {
+    margin-bottom: 120px;
+}
+
+.tables {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid gray;
+}
+.bordered {
+    border-bottom: 1px solid darkgray;
+    background-color: #DCDCDC;
+}
