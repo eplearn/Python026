@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 
 from . import services
 from .forms import NoteForm
@@ -20,3 +20,11 @@ class CreateNote(CreateView):
         context = super().get_context_data(**kwargs)
         context['notes'] = NoteModel.objects.all()
         return context
+
+
+class DltNote(DeleteView):
+    model = NoteModel
+    success_url = '/create_note'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)

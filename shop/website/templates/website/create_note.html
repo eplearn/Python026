@@ -90,6 +90,11 @@
                                     {{ note.text }}
                                 </td>
                             </tr>
+                            <tr>
+                                <td align="left">
+                                    <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 

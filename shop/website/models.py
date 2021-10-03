@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.urls import reverse
 from django.db import models
 
 
@@ -10,6 +11,9 @@ class NoteModel(models.Model):
     abstract = models.CharField('abstract', max_length=300)
     text = models.TextField('text')
     publish_date = models.DateTimeField('publish date', default=datetime.now())
+
+    def get_absolute_url(self):
+        return reverse('website:create_note', kwargs={'id': self.pk})
 
     def __str__(self):
         return str(self.title) + ' - ' + str(self.publish_date)
