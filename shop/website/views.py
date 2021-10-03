@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, CreateView, UpdateView
+from django.shortcuts import render
+from django.views.generic import CreateView
 
 from . import services
 from .forms import NoteForm
@@ -8,7 +8,6 @@ from .models import NoteModel
 
 # Create your views here.
 def index(request):
-    # return render(request, 'website/index.html')
     return render(request, 'website/index.html', services.get_all_notes())
 
 

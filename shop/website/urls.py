@@ -5,6 +5,5 @@ from .views import CreateNote
 app_name = 'website'
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('create_note', views.create_note, name='create_note'),
     path('create_note', CreateNote.as_view(), name='create-note'),
 ]

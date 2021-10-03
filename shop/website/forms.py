@@ -1,4 +1,3 @@
-from django.db.models import TextField
 from django.forms import ModelForm, TextInput, Textarea
 from .models import NoteModel
 
