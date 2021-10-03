@@ -5,6 +5,7 @@ from . import services
 from .forms import NoteForm
 from .models import NoteModel
 
+
 # Create your views here.
 def index(request):
     # return render(request, 'website/index.html')

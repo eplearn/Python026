@@ -1,4 +1,5 @@
-from django.forms import ModelForm, TextInput
+from django.db.models import TextField
+from django.forms import ModelForm, TextInput, Textarea
 from .models import NoteModel
 
 
@@ -22,14 +23,16 @@ class NoteForm(ModelForm):
                 'placeholder': 'category',
                 'id': 'floatingInput'
             }),
-            'abstract': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'abstract',
-                'id': 'floatingInput'
-            }),
-            'text': TextInput(attrs={
+            'abstract': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'text',
-                'id': 'floatingInput'
+                'id': 'floatingTextarea',
+                "rows": 5, "cols": 20,
+            }),
+            'text': Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'text',
+                'id': 'floatingTextarea2',
+                "rows": 5, "cols": 20,
             }),
         }
