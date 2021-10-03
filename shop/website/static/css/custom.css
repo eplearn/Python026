@@ -4,6 +4,7 @@ body {
 
 td {
     padding: 15px;
+    word-break: break-all;
 }
 
 .caption {

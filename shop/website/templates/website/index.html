@@ -11,57 +11,74 @@
                 <a href="/create_note.html"></a>
             </div>
 
-             {% if notes %}
+            {% if notes %}
 
-                <div class="row row-cols-1 row-cols-md-3 mb-3 text-left" style="overflow-x:auto;">
+            <div class="caption">
+                <h4>Notes</h4>
+            </div>
 
-                    <table class="table table-dark table-striped table" style="width:90%">
-                        <caption><h3>Notes</h3></caption>
-                        <thead>
+            {% for note in notes %}
+
+                <div class="tables">
+
+                    <table class="table table-borderless" style="width:100%">
+                        <colgroup>
+                           <col style="width: 10%;">
+                           <col style="width: 25%;">
+                           <col style="width: 35%;">
+                           <col style="width: 15%;">
+                           <col style="width: 15%;">
+                        </colgroup>
+                        <thead class="table-dark">
                             <tr>
                             <th scope="col">id</th>
                             <th scope="col">author</th>
-                            <th scope="col">publish date</th>
                             <th scope="col">title</th>
                             <th scope="col">category</th>
+                            <th scope="col">publish date</th>
                             </tr>
                         </thead>
-                        {% for note in notes %}
                         <tbody>
-                            <tr>
-                                <td><span style="color:red">{{ note.id }}</span></td>
-                                <td>{{ note.author }}</td>
-                                <td>{{ note.publish_date }}</td>
-                                <td>{{ note.title }}</td>
-                                <td>{{ note.category }}</td>
+                            <tr class="bordered">
+                                <td><span style="color:green"><b>{{ note.id }}</b></span></td>
+                                <td><b>{{ note.author }}</b></td>
+                                <td><b>{{ note.title }}</b></td>
+                                <td><b>{{ note.category }}</b></td>
+                                <td><b>{{ note.publish_date }}</b></td>
                             </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <colgroup>
+                           <col style="width: 15%;">
+                           <col style="width: 85%;">
+                        </colgroup>
+                        <thead></thead>
+                        <tbody>
+                            <tr class="align-top">
                                 <td>
-                                    <h6>Abstract:</h6>
+                                    <b>Abstract: </b>
                                 </td>
-                                <td colspan=6>
+                                <td>
                                     {{ note.abstract }}
                                 </td>
                             </tr>
-                            <tr>
+
+                            <tr class="align-top">
                                 <td>
-                                    <h6>Text:</h6>
+                                    <b>Text: </b>
                                 </td>
-                                <td colspan=6>
+                                <td>
                                     {{ note.text }}
                                 </td>
                             </tr>
                         </tbody>
-
-                        {% endfor %}
                     </table>
-                    <div>
-                        {{ note.text }}
-                    </div>
+
                 </div>
+
+            {% endfor %}
             {% endif %}
 
         </div>

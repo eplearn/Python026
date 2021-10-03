@@ -25,13 +25,13 @@ class NoteForm(ModelForm):
             'abstract': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'text',
-                'id': 'floatingTextarea',
+                'id': 'floatingTextarea1',
                 "rows": 5, "cols": 20,
             }),
             'text': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'text',
-                'id': 'floatingTextarea2',
-                "rows": 5, "cols": 20,
+                'id': 'floatingTextarea1',
+                "rows": 10, "cols": 20,
             }),
         }
