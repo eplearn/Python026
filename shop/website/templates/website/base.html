@@ -36,6 +36,11 @@
         {% block body %}
 
         {% endblock %}
-        <script src="{% static 'website/js/bootstrap.bundle.min.js' %}"></script>
+
+        {% load static %}
+        <script src="{% static 'website/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'website/bootstrap.min.js' %}"></script>
+        <script src="{% static 'website/jquery.min.js' %}"></script>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     </body>
 </html>
