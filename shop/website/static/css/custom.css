@@ -6,6 +6,9 @@ td {
     padding: 15px;
     word-break: break-all;
 }
+li {
+    color: red;
+}
 
 .heading{
     margin-top: 30px;
@@ -31,4 +34,13 @@ td {
 .bordered {
     border-bottom: 1px solid darkgray;
     background-color: #DCDCDC;
+}
+
+.error-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.error-span {
+    color: red;
 }

@@ -19,13 +19,24 @@
                         <div class="form-floating">
                             {{ el }}
                             {{ el.label_tag }}
+                            <span class="error-span">{{error}}</span>
                         </div>
                     </div>
                     {% endfor %}
 
                     <button type="submit" class="btn btn-success">Create new note</button>
                 </form>
-                <h3>{{ error }}</h3>
+<!--                Error messaging -->
+                <div class="error-div">
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>
+                                <span class="error-span">{{error}}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
             </div>
 
             {% if notes %}
