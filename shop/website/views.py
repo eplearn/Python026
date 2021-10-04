@@ -1,7 +1,5 @@
-import form as form
 from django.shortcuts import render
 from django.views.generic import CreateView, DeleteView
-from django.contrib import messages
 
 from . import services
 from .forms import NoteForm

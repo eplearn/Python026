@@ -1,6 +1,5 @@
 from django.forms import ModelForm, TextInput, Textarea
 from django.core.exceptions import ValidationError
-from django.forms.utils import ErrorList
 
 from .models import NoteModel
 
@@ -49,15 +48,9 @@ class NoteForm(ModelForm):
 
         # conditions
         if len(author) < 5:
-            # self._errors['author'] = self.error_class([
-            #     'Minimum 5 characters required'])
-
             raise ValidationError('Minimum 5 characters required')
 
         if len(text) < 25:
-            # self._errors['text'] = self.error_class([
-            #     'Note main text should contain a minimum of 25 characters'])
-
             raise ValidationError('Note main text should contain a minimum of 25 characters')
 
         return self.cleaned_data
