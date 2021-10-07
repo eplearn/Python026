@@ -106,7 +106,11 @@
                                     <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
                                 </td>
                                 <td>
-                                    <span class="is-published">Is published: {{ note.is_published }}.</span>
+                                    {% if note.is_published %}
+                                        <p>Is published: <span class="is-published">{{ note.is_published }}.</span></p>
+                                    {% else %}
+                                        <p>Is published: <span class="error-span">{{ note.is_published }}.</span></p>
+                                    {% endif %}
                                 </td>
                             </tr>
                         </tbody>
