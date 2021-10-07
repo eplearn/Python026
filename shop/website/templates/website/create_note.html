@@ -9,7 +9,7 @@
 
         <div class="container">
             <div class="form">
-                <form method="POST" autocomplete="off">
+                <form method="POST" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
                     <div class="heading">
                         <h1>Create note</h1>
@@ -79,8 +79,8 @@
 
                     <table>
                         <colgroup>
-                           <col style="width: 15%;">
-                           <col style="width: 85%;">
+                           <col style="width: 10%;">
+                           <col style="width: 90%;">
                         </colgroup>
                         <thead></thead>
                         <tbody>
@@ -104,6 +104,9 @@
                             <tr>
                                 <td align="left">
                                     <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
+                                </td>
+                                <td>
+                                    <span class="is-published">Is published: {{ note.is_published }}.</span>
                                 </td>
                             </tr>
                         </tbody>

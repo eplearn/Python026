@@ -44,3 +44,7 @@ li {
 .error-span {
     color: red;
 }
+
+.is-published {
+    color: green;
+}

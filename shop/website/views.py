@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, ListView, DeleteView
 
 from . import services
 from .forms import NoteForm
@@ -7,8 +7,22 @@ from .models import NoteModel
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'website/index.html', services.get_all_notes())
+# def index(request):
+#     return render(request, 'website/index.html', services.get_all_notes())
+
+class NotesView(ListView):
+    model = NoteModel
+    template_name = 'website/index.html'
+    context_object_name = 'notes'
+    # extra_context = {'title': 'Main'}
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Main'
+        return context
+
+    def get_queryset(self):
+        return NoteModel.objects.filter(is_published=True)
 
 
 class CreateNote(CreateView):

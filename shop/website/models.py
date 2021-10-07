@@ -11,6 +11,7 @@ class NoteModel(models.Model):
     abstract = models.CharField('abstract', max_length=300)
     text = models.TextField('text')
     publish_date = models.DateTimeField('publish date', default=datetime.now())
+    is_published = models.BooleanField('is published?', default=True)
 
     def get_absolute_url(self):
         return reverse('website:create_note', kwargs={'id': self.pk})
