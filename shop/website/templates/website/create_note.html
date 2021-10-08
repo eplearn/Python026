@@ -80,7 +80,7 @@
                     <table>
                         <colgroup>
                            <col style="width: 10%;">
-                           <col style="width: 90%;">
+                           <col style="width: 80%;">
                         </colgroup>
                         <thead></thead>
                         <tbody>
@@ -101,20 +101,23 @@
                                     {{ note.text }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td align="left">
-                                    <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
-                                </td>
-                                <td>
-                                    {% if note.is_published %}
-                                        <p>Is published: <span class="is-published">{{ note.is_published }}.</span></p>
-                                    {% else %}
-                                        <p>Is published: <span class="error-span">{{ note.is_published }}.</span></p>
-                                    {% endif %}
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="read-note-href">
+                            <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
+                        </div>
+                        <div class="read-note-href">
+                            {% if note.is_published %}
+                                <p>Is published: <span class="is-published">{{ note.is_published }}.</span></p>
+                            {% else %}
+                                <p>Is published: <span class="error-span">{{ note.is_published }}.</span></p>
+                            {% endif %}</div>
+                        <div class="read-note-href" align="right">
+                            <a href="{% url 'website:show-note' note.pk %}" title="read note" class="link-success">Read note</a>
+                        </div>
+                    </div>
 
                 </div>
 

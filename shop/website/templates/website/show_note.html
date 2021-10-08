@@ -1,0 +1,96 @@
+{% extends 'website/base.html' %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<!--    <p>{{ note.author }}</p>-->
+<!--    <p>{{ note.title }}</p>-->
+<!--    <p>{{ note.category }}</p>-->
+<!--    <p>{{ note.is_published }}</p>-->
+<!--    <p>{{ note.publish_date }}</p>-->
+<!--    <p>{{ note.abstract }}</p>-->
+<!--    <p>{{ note.text }}</p>-->
+
+    <div class="caption">
+        <h4>{{ note.title }}</h4>
+    </div>
+
+    <div class="tables">
+
+        <table class="table table-borderless" style="width:100%">
+            <colgroup>
+               <col style="width: 10%;">
+               <col style="width: 25%;">
+               <col style="width: 30%;">
+               <col style="width: 15%;">
+               <col style="width: 20%;">
+            </colgroup>
+            <thead class="table-dark">
+                <tr>
+                <th scope="col">id</th>
+                <th scope="col">author</th>
+                <th scope="col">title</th>
+                <th scope="col">category</th>
+                <th scope="col">publish date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bordered">
+                    <td><span style="color:green"><b>{{ note.id }}</b></span></td>
+                    <td><b>{{ note.author }}</b></td>
+                    <td><b>{{ note.title }}</b></td>
+                    <td><b>{{ note.category }}</b></td>
+                    <td><b>{{ note.publish_date }}</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <colgroup>
+               <col style="width: 10%;">
+               <col style="width: 80%;">
+            </colgroup>
+            <thead></thead>
+            <tbody>
+                <tr class="align-top">
+                    <td>
+                        <b>Abstract: </b>
+                    </td>
+                    <td>
+                        {{ note.abstract }}
+                    </td>
+                </tr>
+
+                <tr class="align-top">
+                    <td>
+                        <b>Text: </b>
+                    </td>
+                    <td>
+                        {{ note.text }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between">
+            <div class="read-note-href">
+                <a href="{% url 'website:delete-note' note.pk %}" class="btn btn-close" title="delete"></a>
+            </div>
+            <div class="read-note-href">
+                {% if note.is_published %}
+                    <p>Is published: <span class="is-published">{{ note.is_published }}.</span></p>
+                {% else %}
+                    <p>Is published: <span class="error-span">{{ note.is_published }}.</span></p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

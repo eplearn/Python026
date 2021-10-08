@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView
+from django.views.generic import CreateView, ListView, DeleteView, DetailView
 
 from . import services
 from .forms import NoteForm
@@ -14,6 +14,7 @@ class NotesView(ListView):
     model = NoteModel
     template_name = 'website/index.html'
     context_object_name = 'notes'
+
     # extra_context = {'title': 'Main'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -44,3 +45,10 @@ class DltNote(DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class ShowNote(DetailView):
+    model = NoteModel
+    template_name = 'website/show_note.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'note'

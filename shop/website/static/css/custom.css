@@ -48,3 +48,8 @@ li {
 .is-published {
     color: green;
 }
+
+.read-note-href {
+    padding: 20px;
+    align: right;
+}
