@@ -19,7 +19,8 @@
                         <div class="form-floating">
                             {{ el }}
                             {{ el.label_tag }}
-                            <span class="error-span">{{error}}</span>
+                            <span class="error-span">{{ el.errors }}</span>
+<!--                            <span class="error-span">{{error}}</span>-->
                         </div>
                     </div>
                     {% endfor %}
