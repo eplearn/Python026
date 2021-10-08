@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from . import services
 from .forms import NoteForm
 from .models import NoteModel
+from .utils import DataMixin
 
 
 # Create your views here.
@@ -26,12 +29,14 @@ class NotesView(ListView):
         return NoteModel.objects.filter(is_published=True)
 
 
-class CreateNote(CreateView):
+class CreateNote(LoginRequiredMixin, DataMixin, CreateView):
     form_class = NoteForm
     template_name = 'website/create_note.html'
-    success_url = '/create_note'
+    # success_url = '/create_note'
     success_message = 'Note successfully created!'
     error_message = 'Error saving the Note, check fields below.'
+    login_url = reverse_lazy('website:index')
+    success_url = reverse_lazy('website:create-note')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

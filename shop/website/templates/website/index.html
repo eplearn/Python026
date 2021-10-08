@@ -7,78 +7,79 @@
 {% block body %}
     <main>
         <div class="container">
-            <div>
-                <a href="/create_note.html"></a>
-            </div>
 
             {% if notes %}
 
-            <div class="caption">
-                <h4>Notes</h4>
-            </div>
-
-            {% for note in notes %}
-
-                <div class="tables">
-
-                    <table class="table table-borderless" style="width:100%">
-                        <colgroup>
-                           <col style="width: 10%;">
-                           <col style="width: 25%;">
-                           <col style="width: 30%;">
-                           <col style="width: 15%;">
-                           <col style="width: 20%;">
-                        </colgroup>
-                        <thead class="table-dark">
-                            <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">author</th>
-                            <th scope="col">title</th>
-                            <th scope="col">category</th>
-                            <th scope="col">publish date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bordered">
-                                <td><span style="color:green"><b>{{ note.id }}</b></span></td>
-                                <td><b>{{ note.author }}</b></td>
-                                <td><b>{{ note.title }}</b></td>
-                                <td><b>{{ note.category }}</b></td>
-                                <td><b>{{ note.publish_date }}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <colgroup>
-                           <col style="width: 15%;">
-                           <col style="width: 85%;">
-                        </colgroup>
-                        <thead></thead>
-                        <tbody>
-                            <tr class="align-top">
-                                <td>
-                                    <b>Abstract: </b>
-                                </td>
-                                <td>
-                                    {{ note.abstract }}
-                                </td>
-                            </tr>
-
-                            <tr class="align-top">
-                                <td>
-                                    <b>Text: </b>
-                                </td>
-                                <td>
-                                    {{ note.text }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                <div class="caption">
+                    <h4>Notes</h4>
                 </div>
 
-            {% endfor %}
+                {% for note in notes %}
+
+                    <div class="tables">
+
+                        <table class="table table-borderless" style="width:100%">
+                            <colgroup>
+                               <col style="width: 10%;">
+                               <col style="width: 25%;">
+                               <col style="width: 30%;">
+                               <col style="width: 15%;">
+                               <col style="width: 20%;">
+                            </colgroup>
+                            <thead class="table-dark">
+                                <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">author</th>
+                                <th scope="col">title</th>
+                                <th scope="col">category</th>
+                                <th scope="col">publish date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bordered">
+                                    <td><span style="color:green"><b>{{ note.id }}</b></span></td>
+                                    <td><b>{{ note.author }}</b></td>
+                                    <td><b>{{ note.title }}</b></td>
+                                    <td><b>{{ note.category }}</b></td>
+                                    <td><b>{{ note.publish_date }}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table>
+                            <colgroup>
+                               <col style="width: 15%;">
+                               <col style="width: 85%;">
+                            </colgroup>
+                            <thead></thead>
+                            <tbody>
+                                <tr class="align-top">
+                                    <td>
+                                        <b>Abstract: </b>
+                                    </td>
+                                    <td>
+                                        {{ note.abstract }}
+                                    </td>
+                                </tr>
+
+                                <tr class="align-top">
+                                    <td>
+                                        <b>Text: </b>
+                                    </td>
+                                    <td>
+                                        {{ note.text }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                <div class="caption">
+                    <h4>There is no any note here.</h4>
+                </div>
             {% endif %}
 
         </div>
