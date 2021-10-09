@@ -7,7 +7,7 @@
 
         {% endblock %}
 
-<!--        {% load static %}-->
+        {% load static %}
 
         <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
@@ -22,25 +22,27 @@
         <div class="container py-3">
             <header>
                 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-                    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                        <span class="fs-4">Shop</span>
-                    </a>
 
-                    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                    <nav class="d-inline-flex">
                         <a class="me-3 py-2 text-dark text-decoration-none" href="/"><strong class="navbar-brand">Main</strong></a>
                         {% if request.user.is_authenticated %}
+                            <a href="{% url 'website:user-profile' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>User profile</strong></a>
                             <a class="me-3 py-2 text-dark text-decoration-none navbar-brand" href="/create_note"><strong>Create note</strong></a>
-                            <strong class="navbar-brand d-flex align-items-center">{{ user.username }}  | </strong>
-                            <a href="{% url 'website:logout' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Logout</strong></a>
-
-                        {% else %}
-
-                            <a href="{% url 'website:register' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Registration</strong></a>
-                            <strong class="navbar-brand"> | </strong>
-                            <a href="{% url 'website:login' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Login</strong></a>
-
                         {% endif %}
                     </nav>
+
+                    <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'website:user-profile' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>User profile</strong></a>
+                            <strong class="navbar-brand d-flex align-items-center">{{ user.username }}  |  </strong>
+                            <a href="{% url 'website:logout' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Logout</strong></a>
+                        {% else %}
+                            <a href="{% url 'website:register' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Registration</strong></a>
+                            <strong class="navbar-brand">  |  </strong>
+                            <a href="{% url 'website:login' %}" class="navbar-brand d-flex align-items-center text-dark text-decoration-none"><strong>Login</strong></a>
+                        {% endif %}
+                    </div>
+
                 </div>
             </header>
         </div>

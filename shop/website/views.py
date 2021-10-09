@@ -1,12 +1,14 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
+from django.http import request
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
-from . import services
+# from . import services
 from .forms import NoteForm, RegisterUserForm, LoginUserForm
 from .models import NoteModel
 from .utils import DataMixin
@@ -92,5 +94,18 @@ def logout_user(request):
     return redirect('website:index')
 
 
-class UserProfile:
-    pass
+class UserProfile(ListView):
+    template_name = 'website/user_profile.html'
+    model = User
+    context_object_name = 'account'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'User profile'
+        # context['user_data'] = User.objects.filter(username=self.request.user).values()
+        return context
+
+    def get_queryset(self):
+        # Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser,
+        # last_login, last_name, logentry, password, user_permissions, username
+        return User.objects.filter(username=self.request.user).values()

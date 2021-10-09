@@ -1,0 +1,29 @@
+{% extends 'website/base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex">
+            <div class="mb3">
+                <div class="heading">
+                    <h1>Account: {{ user.username }}</h1>
+                </div>
+                <div>
+                    <table class="table table-dark table-striped">
+                        {% for data in account %}
+                            {% for key, value in data.items %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>{{ value }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

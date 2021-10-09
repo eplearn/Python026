@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import CreateNote, NotesView, DltNote, ShowNote, RegisterUser, LoginUser, logout_user
+from .views import CreateNote, NotesView, DltNote, ShowNote, RegisterUser, LoginUser, logout_user, UserProfile
 
 app_name = 'website'
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('register', RegisterUser.as_view(), name='register'),
     path('login', LoginUser.as_view(), name='login'),
     path('logout', logout_user, name='logout'),
+    path('user_profile',  UserProfile.as_view(), name='user-profile'),
 ]
