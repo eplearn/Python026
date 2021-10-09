@@ -13,16 +13,10 @@ from .models import NoteModel
 from .utils import DataMixin
 
 
-# Create your views here.
-# def index(request):
-#     return render(request, 'website/index.html', services.get_all_notes())
-
 class NotesView(ListView):
     model = NoteModel
     template_name = 'website/index.html'
     context_object_name = 'notes'
-
-    # extra_context = {'title': 'Main'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,7 +30,6 @@ class NotesView(ListView):
 class CreateNote(LoginRequiredMixin, DataMixin, CreateView):
     form_class = NoteForm
     template_name = 'website/create_note.html'
-    # success_url = '/create_note'
     success_message = 'Note successfully created!'
     error_message = 'Error saving the Note, check fields below.'
     login_url = reverse_lazy('website:index')
@@ -64,7 +57,6 @@ class ShowNote(DetailView):
 
 
 class RegisterUser(DataMixin, CreateView):
-    # form_class = UserCreationForm
     form_class = RegisterUserForm
     template_name = 'website/register.html'
     success_url = reverse_lazy('website:index')
@@ -101,7 +93,6 @@ class UserProfile(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'User profile'
-        # context['user_data'] = User.objects.filter(username=self.request.user).values()
         return context
 
     def get_queryset(self):
