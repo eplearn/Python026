@@ -1,5 +1,7 @@
-from django.forms import ModelForm, TextInput, Textarea
-from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
+from django.forms import ModelForm, TextInput, PasswordInput, CharField, Textarea
+# from django.core.exceptions import ValidationError
 
 from .models import NoteModel
 
@@ -60,3 +62,35 @@ class NoteForm(ModelForm):
 
         return cleaned_data
         # return super().clean()
+
+
+class RegisterUserForm(UserCreationForm):
+    username = CharField(label='Login', widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Login', 'id': 'login-input'}))
+    password1 = CharField(label='Password', widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'id': 'password1-input'}))
+    password2 = CharField(label='Password confirmation', widget=PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password confirmation', 'id': 'password2-input'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ''
+
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']
+
+
+class LoginUserForm(AuthenticationForm):
+    username = CharField(label='Login', widget=TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Login', 'id': 'login-input'}
+    ))
+
+    password = CharField(label='Password', widget=PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Password', 'id': 'password-input'}
+    ))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ''
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
