@@ -1,5 +1,4 @@
 from django.urls import path
-from . import views
 from .views import CreateNote, NotesView, DltNote, ShowNote, RegisterUser, LoginUser, logout_user, UserProfile
 
 app_name = 'website'
