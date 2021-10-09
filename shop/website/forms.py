@@ -42,26 +42,24 @@ class NoteForm(ModelForm):
 
     def clean(self):
         # data from the form is fetched using super function
-        # super(NoteForm, self).clean()
         cleaned_data = super().clean()
 
         # extract the author and text field from the data
         author = self.cleaned_data.get('author')
+        abstract = self.cleaned_data.get('abstract')
         text = self.cleaned_data.get('text')
-        # author = self.cleaned_data['author']
-        # text = self.cleaned_data['text']
 
         # conditions
         if len(author) < 5:
             self.add_error('author', 'Minimum 5 characters required')
-            # raise ValidationError('Author: Minimum 5 characters required')
+
+        if len(abstract) < 10:
+            self.add_error('abstract', 'Minimum 10 characters required')
 
         if len(text) < 25:
             self.add_error('text', 'Note main text should contain a minimum of 25 characters')
-            # raise ValidationError('Text: should contain a minimum of 25 characters')
 
         return cleaned_data
-        # return super().clean()
 
 
 class RegisterUserForm(UserCreationForm):
